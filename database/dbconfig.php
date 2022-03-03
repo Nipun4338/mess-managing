@@ -4,10 +4,10 @@ $server_name = "localhost";
 $db_username = "root";
 $db_password = "";
 $db_name = "mess";
-$server_name = "l6glqt8gsx37y4hs.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306";
-$db_username = "makg3caj9gd3eiap";
-$db_password = "mwqm3zwy64nizmry";
-$db_name = "hq9dl6h96cyazjahp";
+$server_name = "ec2-52-73-149-159.compute-1.amazonaws.com";
+$db_username = "qqfgtcextcrjsm";
+$db_password = "cab259fbd3c09e4591339251c5f6955d04807e3881c636fc0cf87b35caac0a23";
+$db_name = "daj1vkadhe6plo";
 
 $connection = mysqli_connect($server_name,$db_username,$db_password,$db_name);
 $link=mysqli_connect($server_name,$db_username,$db_password,$db_name);

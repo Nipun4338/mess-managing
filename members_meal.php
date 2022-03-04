@@ -2,7 +2,7 @@
 include("security.php");
 include('database/dbconfig.php');
 $user_id=$_SESSION['user_id'];
-$sql="SELECT * FROM todays_meal";
+$sql="select distinct user_id, day, night, date from todays_meal group by user_id order by date desc";
 $result=mysqli_query($connection,$sql);
 $data=array();
 $noOfRows=mysqli_num_rows($result);

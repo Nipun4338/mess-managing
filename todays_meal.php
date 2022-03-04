@@ -139,6 +139,7 @@ if($noOfRows){
             <th scope="col">Lunch</th>
             <th scope="col">Dinner</th>
             <th scope="col">Last Updated</th>
+            <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -168,6 +169,17 @@ if($noOfRows){
             <td><?php echo $rowm['day']; ?></td>
             <td><?php echo $rowm['night']; ?></td>
             <td><p class="card-title" style="font-style: italic;"><?php echo date('M j, Y g:i A', strtotime($rowm["date"])) ?></p></td> 
+            <td>
+              <?php
+            if($user_id==$rowm['user_id'])
+            {
+                echo '<form class="form-container" action="code.php" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="meal_id" value='.$rowm["meal_id"].'>
+                <button type="submit" id="submit" name="delete"  class="btn btn-danger btn-block submit2">DELETE</button>
+                </form>';
+            }
+            ?>
+            </td>
           </tr>
             <?php } } }}?>
         </tbody>

@@ -46,5 +46,21 @@ if (isset($_POST["meal"])) {
   }
 }
 
+if (isset($_POST["delete"])) {
+  $meal_id=$_POST['meal_id'];
+  $sql="DELETE from todays_meal where meal_id='$meal_id'";
+  $result=mysqli_query($connection,$sql) or die(mysqli_error($connection));
+  if($result)
+  {
+    $_SESSION['success']="Meal Deleted";
+    header('Location: todays_meal');
+  }
+  else {
+    $_SESSION['success']="Meal is not deleted";
+    header('Location: todays_meal');
+  }
+}
+
+
 
 ?>

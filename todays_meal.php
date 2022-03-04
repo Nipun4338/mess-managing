@@ -2,12 +2,15 @@
 include("security.php");
 include('database/dbconfig.php');
 $user_id=$_SESSION['user_id'];
-$sql="SELECT * FROM todays_meal where user_id='".$user_id."'";
+$sql="SELECT * FROM todays_meal where user_id='".$user_id."' order by date desc limit 1";
 $result=mysqli_query($connection,$sql);
 $noOfRows=mysqli_num_rows($result);
+$data=array();
 if($noOfRows){
   while($row=mysqli_fetch_assoc($result)){
-
+    array_push($data,$row);
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -64,7 +67,13 @@ if($noOfRows){
     }
      ?>
         <input type="hidden" name="user_id" value="<?php echo $user_id?>">
-        <p class="card-title" style="text-align: center; font-style: italic;">Last Updated: <?php echo date('M j, Y g:i A', strtotime($row["date"])) ?></p>
+        <p class="card-title" style="text-align: center; font-style: italic;">Last Updated: <?php 
+        if(isset($data))
+        {
+        foreach($data as $r)
+        {
+          echo date('M j, Y g:i A', strtotime($r["date"]));
+        } }?></p>
 
         <div class="container">
         <div class="row justify-content-center">
@@ -82,7 +91,12 @@ if($noOfRows){
         </p>
         </div>
         <div class="card-footer bg-transparent border-success"><div class="input-group mb-3">
-        <input type="number" min="0" name="lunch"  style="text-align: center" class="form-control" placeholder="Lunch meal count" aria-label="meal-count" aria-describedby="basic-addon1" value=<?php echo $row['day']; ?>>
+        <input type="number" min="0" name="lunch"  style="text-align: center" class="form-control" placeholder="Lunch meal count" aria-label="meal-count" aria-describedby="basic-addon1" value=<?php 
+        if(isset($data))
+        {
+        foreach($data as $r)
+        {
+        echo $r['day']; }}?>>
         </div></div>
         </div>
 
@@ -100,7 +114,12 @@ if($noOfRows){
         </p>
         </div>
         <div class="card-footer bg-transparent border-success"><div class="input-group mb-3">
-        <input type="number" min="0" style="text-align: center" name="dinner" class="form-control" placeholder="Dinner meal count" aria-label="meal-count" aria-describedby="basic-addon1" value=<?php echo $row['night']; ?>>
+        <input type="number" min="0" style="text-align: center" name="dinner" class="form-control" placeholder="Dinner meal count" aria-label="meal-count" aria-describedby="basic-addon1" value=<?php 
+        if(isset($data))
+        {
+        foreach($data as $r)
+        {
+        echo $r['night']; }}?>>
         </div>
       </div>
         </div>
@@ -109,9 +128,54 @@ if($noOfRows){
         <button type="submit" name="meal" class="btn btn-primary btn-block submit">Submit</button>
         </div>
     </form>
+
+    <h3 style="font-weight: bold; text-align: center; margin-top: 20px">Meal Logs</h3><hr/>
+    <div class="table-responsive table table-hover">
+        <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Meal ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Lunch</th>
+            <th scope="col">Dinner</th>
+            <th scope="col">Last Updated</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php
+        $sqlm="select * from todays_meal order by date desc limit 20";
+        $resultm=mysqli_query($connection,$sqlm);
+        $noOfRowsm=mysqli_num_rows($resultm);
+        $data=array();
+        if($noOfRowsm){
+          while($rowm=mysqli_fetch_assoc($resultm)){
+            array_push($data,$rowm);
+          }
+        }
+        if($noOfRowsm){
+          foreach($data as $rowm){
+      ?>
+      <?php 
+        $sql1="SELECT * FROM user where user_id='".$rowm['user_id']."'";
+        $result1=mysqli_query($connection,$sql1);
+        $noOfRows1=mysqli_num_rows($result1);
+        if($noOfRows1){
+        while($row2=mysqli_fetch_assoc($result1)){
+        ?>
+            <tr>
+            <td><?php echo $rowm['meal_id']; ?></td>
+            <td><?php echo $row2['user_name']; ?></td>
+            <td><?php echo $rowm['day']; ?></td>
+            <td><?php echo $rowm['night']; ?></td>
+            <td><p class="card-title" style="font-style: italic;"><?php echo date('M j, Y g:i A', strtotime($rowm["date"])) ?></p></td> 
+          </tr>
+            <?php } } }}?>
+        </tbody>
+        </table>
+        </div>
+
      </div>
-     </div>
-     <?php } } ?>
+      </div>
     <script  src="./lunchtime.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>

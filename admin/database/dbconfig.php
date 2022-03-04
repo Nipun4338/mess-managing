@@ -4,10 +4,10 @@ $server_name = "localhost";
 $db_username = "root";
 $db_password = "";
 $db_name = "mess";
-$server_name = "ec2-52-73-149-159.compute-1.amazonaws.com";
-$db_username = "qqfgtcextcrjsm";
-$db_password = "cab259fbd3c09e4591339251c5f6955d04807e3881c636fc0cf87b35caac0a23";
-$db_name = "daj1vkadhe6plo";
+$server_name = "us-cdbr-east-05.cleardb.net";
+$db_username = "b7cbde8b1e7c3f";
+$db_password = "1ed309c3";
+$db_name = "heroku_0ca92521c0128f1";
 
 
 $connection = mysqli_connect($server_name,$db_username,$db_password,$db_name);

@@ -33,7 +33,7 @@ if (isset($_POST["meal"])) {
   date_default_timezone_set("Asia/Dhaka");
   $datetime = '';
   $datetime=date('Y-m-d H:i:s');
-  $query="update todays_meal set day='$day', night='$night', date='$datetime' where user_id='$user_id'";
+  $query="insert into todays_meal(user_id, day, night, date) values('$user_id', '$day', '$night', '$datetime')";
   $query_run=mysqli_query($connection, $query);
   if($query_run)
   {

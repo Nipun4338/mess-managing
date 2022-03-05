@@ -147,93 +147,6 @@ if (isset($_POST["updatebtn"])) {
 
 
 
-
-
-
-if(isset($_POST['registerbtnteam']))
-{
-    $name = $_POST['team_name'];
-    $aust = $_POST['aust_id'];
-    $status = $_POST['status'];
-    $target_dir2="";
-    if(!isset($_FILES['file_upload']) || $_FILES['file_upload']['error'] == UPLOAD_ERR_NO_FILE)
-    {
-      $target_dir2="images/team/default-image.jpg";
-    }
-    else{
-
-      $userFileName='team_pic_'.$name;
-       $imageType=strtolower(pathinfo($_FILES['file_upload']['name'], PATHINFO_EXTENSION));
-       $target_dir="../images/team/".$userFileName.".".$imageType;
-       $target_dir2="images/team/".$userFileName.".".$imageType;
-       $target_file=$target_dir;
-       $temp_file=$_FILES['file_upload']['tmp_name'];
-       move_uploaded_file($temp_file, $target_file);
-    }
-    date_default_timezone_set("Asia/Dhaka");
-    $datetime = '';
-    $datetime=date('Y-m-d H:i:s');
-    $query = "INSERT INTO team (name,aust_id,image_path,status,created_date,updated_date)
-    VALUES ('$name','$aust','$target_dir2','$status','$datetime','$datetime')";
-    $query_run = mysqli_query($connection, $query);
-
-    if($query_run)
-    {
-        echo "done";
-        $_SESSION['success'] =  "Member is Added Successfully";
-        header('Location: registerteam.php');
-    }
-    else
-    {
-        echo "not done";
-        $_SESSION['status'] =  "Member is Not Added";
-        header('Location: registerteam.php');
-    }
-
-}
-
-
-if (isset($_POST["updatebtnteam"])) {
-  $id=$_POST['edit_id_team'];
-  $name=$_POST['edit_team_name'];
-  $aust=$_POST['edit_aust_id'];
-  $status=$_POST['edit_status'];
-  $image=$_POST['edit_image'];
-  date_default_timezone_set("Asia/Dhaka");
-  $datetime = '';
-  $datetime=date('Y-m-d H:i:s');
-  if(!isset($_FILES['file_upload']) || $_FILES['file_upload']['error'] == UPLOAD_ERR_NO_FILE)
-  {
-    $target_dir2=$image;
-  }
-  else{
-
-    $userFileName='team_pic_'.$name;
-     $imageType=strtolower(pathinfo($_FILES['file_upload']['name'], PATHINFO_EXTENSION));
-     $target_dir="../images/team/".$userFileName.".".$imageType;
-     $target_dir2="images/team/".$userFileName.".".$imageType;
-     $target_file=$target_dir;
-     $temp_file=$_FILES['file_upload']['tmp_name'];
-     move_uploaded_file($temp_file, $target_file);
-  }
-  $query="update team set name='$name',aust_id='$aust',image_path='$target_dir2',status='$status', updated_date='$datetime' where team_id='$id'";
-  $query_run=mysqli_query($connection, $query);
-
-  if($query_run)
-  {
-    $_SESSION['success']="Member data is updated";
-    header('Location: registerteam.php');
-  }
-  else {
-    $_SESSION['success']="Member data is not updated";
-    header('Location: registerteam.php');
-  }
-
-
-}
-
-
-
 if (isset($_POST["updatebtnuser"])) {
   $id=$_POST['edit_id_user'];
   $name=$_POST['user_name'];
@@ -259,58 +172,6 @@ if (isset($_POST["updatebtnuser"])) {
 
 
 
-
-if(isset($_POST['registerbtnbrand']))
-{
-    $name = $_POST['brand_name'];
-    $status = $_POST['status'];
-    date_default_timezone_set("Asia/Dhaka");
-    $datetime = '';
-    $datetime=date('Y-m-d H:i:s');
-    $query = "INSERT INTO brand (brand_name,status,created_date,updated_date)
-    VALUES ('$name','$status','$datetime','$datetime')";
-    $query_run = mysqli_query($connection, $query);
-
-    if($query_run)
-    {
-        echo "done";
-        $_SESSION['success'] =  "Brand is Added Successfully";
-        header('Location: brand.php');
-    }
-    else
-    {
-        echo "not done";
-        $_SESSION['status'] =  "Brand is Not Added";
-        header('Location: brand.php');
-    }
-
-}
-
-
-if (isset($_POST["updatebtnbrand"])) {
-  $id=$_POST['edit_id_brand'];
-  $name=$_POST['edit_brand_name'];
-  $status=$_POST['edit_status'];
-  date_default_timezone_set("Asia/Dhaka");
-  $datetime = '';
-  $datetime=date('Y-m-d H:i:s');
-  $query="update brand set brand_name='$name',status='$status', updated_date='$datetime' where brand_id='$id'";
-  $query_run=mysqli_query($connection, $query);
-
-  if($query_run)
-  {
-    $_SESSION['success']="Brand data is updated";
-    header('Location: brand.php');
-  }
-  else {
-    $_SESSION['success']="Brand data is not updated";
-    header('Location: brand.php');
-  }
-
-
-}
-
-
 if (isset($_POST["updateDeposite"])) {
   $id=$_POST['user'];
   $deposite=$_POST['deposite'];
@@ -318,7 +179,9 @@ if (isset($_POST["updateDeposite"])) {
   $datetime = '';
   $datetime=date('Y-m-d H:i:s');
   $query="update balance b1 set b1.deposite=b1.deposite+'$deposite', date='$datetime' where user_id='$id'";
+  $query2="insert into logs(deposite, date) values ('$deposite', '$datetime')";
   $query_run=mysqli_query($connection, $query);
+  $query_run2=mysqli_query($connection, $query2);
 
   if($query_run)
   {
@@ -342,8 +205,9 @@ if (isset($_POST["editBalance"])) {
   $datetime = '';
   $datetime=date('Y-m-d H:i:s');
   $query="update balance b1 set b1.deposite='$deposite', b1.cost='$cost', b1.balance='$balance', date='$datetime' where user_id='$id'";
+  $query2="insert into logs(deposite, date) values ('$deposite', '$datetime')";
   $query_run=mysqli_query($connection, $query);
-
+  $query_run2=mysqli_query($connection, $query2);
   if($query_run)
   {
     $_SESSION['success']="Balance Data is updated";
@@ -366,7 +230,8 @@ if (isset($_POST["editMeal"])) {
   $datetime=date('Y-m-d H:i:s');
   $query="update meal set meal_count='$meal_count', date='$datetime' where user_id='$id'";
   $query_run=mysqli_query($connection, $query);
-
+  $query2="insert into logs(user_id, meal_count, date) values ('$id', '$meal_count', '$datetime')";
+  $query_run2=mysqli_query($connection, $query2);
   if($query_run)
   {
     $_SESSION['success']="Meal Data is updated";
@@ -380,6 +245,28 @@ if (isset($_POST["editMeal"])) {
 
 }
 
+
+if (isset($_POST["editAlert"])) {
+  $id=$_POST['edit_id_alert'];
+  $title=$_POST['alert_name'];
+  $status=$_POST['status'];
+  $query="update alert set name='$title', status='$status' where alert_id='$id'";
+  $query_run=mysqli_query($connection, $query);
+
+  if($query_run)
+  {
+    $_SESSION['success']="Alert is updated";
+    header('Location: alert.php');
+  }
+  else {
+    $_SESSION['success']="Alert is not updated";
+    header('Location: alert.php');
+  }
+
+
+}
+
+
 if (isset($_POST["addCost"])) {
   $others=$_POST['others'];
   $meal=$_POST['meal'];
@@ -388,6 +275,8 @@ if (isset($_POST["addCost"])) {
   $datetime=date('Y-m-d H:i:s');
   $query="update cost c1 set c1.others_cost=c1.others_cost+'$others', c1.meal_cost=c1.meal_cost+'$meal', date='$datetime'";
   $query_run=mysqli_query($connection, $query);
+  $query2="insert into logs(others_cost, meal_cost, date) values ('$others', '$meal', '$datetime')";
+  $query_run2=mysqli_query($connection, $query2);
 
   if($query_run)
   {
@@ -410,6 +299,8 @@ if (isset($_POST["editCost"])) {
   $datetime=date('Y-m-d H:i:s');
   $query="update cost c1 set c1.others_cost='$others', c1.meal_cost='$meal', date='$datetime'";
   $query_run=mysqli_query($connection, $query);
+  $query2="insert into logs(others_cost, meal_cost, date) values ('$others', '$meal', '$datetime')";
+  $query_run2=mysqli_query($connection, $query2);
 
   if($query_run)
   {
@@ -447,177 +338,6 @@ if (isset($_POST["updateMonth"])) {
 
 }
 
-
-
-
-if(isset($_POST['registerbtnslider1']))
-{
-    $header = $_POST['header'];
-    $paragraph = $_POST['paragraph'];
-    $status = $_POST['status'];
-    $target_dir2="";
-    if(!isset($_FILES['file_upload']) || $_FILES['file_upload']['error'] == UPLOAD_ERR_NO_FILE)
-    {
-      $target_dir2="images/default-image.jpg";
-    }
-    else{
-      $name=$_FILES['file_upload']['name'];
-      $userFileName='slider_pic_'.$name;
-       $imageType=strtolower(pathinfo($_FILES['file_upload']['name'], PATHINFO_EXTENSION));
-       $target_dir="../images/slider1/".$userFileName;
-       $target_dir2="images/slider1/".$userFileName;
-       $target_file=$target_dir;
-       $temp_file=$_FILES['file_upload']['tmp_name'];
-       move_uploaded_file($temp_file, $target_file);
-    }
-    date_default_timezone_set("Asia/Dhaka");
-    $datetime = '';
-    $datetime=date('Y-m-d H:i:s');
-    $query = "INSERT INTO slider1 (image,status,created_date,updated_date)
-    VALUES ('$target_dir2','$status','$datetime','$datetime')";
-    $query_run = mysqli_query($connection, $query);
-
-    if($query_run)
-    {
-        echo "done";
-        $_SESSION['success'] =  "Image is Added Successfully";
-        header('Location: slider1.php');
-    }
-    else
-    {
-        echo "not done";
-        $_SESSION['status'] =  "Image is Not Added";
-        header('Location: slider1.php');
-    }
-
-}
-
-
-if (isset($_POST["updatebtnslider1"])) {
-  $id=$_POST['edit_id_slider1'];
-  $status=$_POST['edit_status'];
-  $image=$_POST['edit_image'];
-  date_default_timezone_set("Asia/Dhaka");
-  $datetime = '';
-  $datetime=date('Y-m-d H:i:s');
-  if(!isset($_FILES['file_upload']) || $_FILES['file_upload']['error'] == UPLOAD_ERR_NO_FILE)
-  {
-    $target_dir2=$image;
-  }
-  else{
-
-    $name=$_FILES['file_upload']['name'];
-    $userFileName='slider_pic_'.$name;
-     $imageType=strtolower(pathinfo($_FILES['file_upload']['name'], PATHINFO_EXTENSION));
-     $target_dir="../images/slider1/".$userFileName;
-     $target_dir2="images/slider1/".$userFileName;
-     $target_file=$target_dir;
-     $temp_file=$_FILES['file_upload']['tmp_name'];
-     move_uploaded_file($temp_file, $target_file);
-  }
-  $query="update slider1 set image='$target_dir2',status='$status', updated_date='$datetime' where slider_id='$id'";
-  $query_run=mysqli_query($connection, $query);
-
-  if($query_run)
-  {
-    $_SESSION['success']="Slider data is updated";
-    header('Location: slider1.php');
-  }
-  else {
-    $_SESSION['success']="Slider data is not updated";
-    header('Location: slider1.php');
-  }
-
-
-}
-
-
-
-
-
-
-
-
-
-if(isset($_POST['registerbtnslider2']))
-{
-
-    $status = $_POST['status'];
-    $target_dir2="";
-    if(!isset($_FILES['file_upload']) || $_FILES['file_upload']['error'] == UPLOAD_ERR_NO_FILE)
-    {
-      $target_dir2="images/default-image.jpg";
-    }
-    else{
-      $name=$_FILES['file_upload']['name'];
-      $userFileName='slider_pic_'.$name;
-       $imageType=strtolower(pathinfo($_FILES['file_upload']['name'], PATHINFO_EXTENSION));
-       $target_dir="../images/slider2/".$userFileName;
-       $target_dir2="images/slider2/".$userFileName;
-       $target_file=$target_dir;
-       $temp_file=$_FILES['file_upload']['tmp_name'];
-       move_uploaded_file($temp_file, $target_file);
-    }
-    date_default_timezone_set("Asia/Dhaka");
-    $datetime = '';
-    $datetime=date('Y-m-d H:i:s');
-    $query = "INSERT INTO slider2 (image,status,created_date,updated_date)
-    VALUES ('$target_dir2','$status','$datetime','$datetime')";
-    $query_run = mysqli_query($connection, $query);
-
-    if($query_run)
-    {
-        echo "done";
-        $_SESSION['success'] =  "Image is Added Successfully";
-        header('Location: slider2.php');
-    }
-    else
-    {
-        echo "not done";
-        $_SESSION['status'] =  "Image is Not Added";
-        header('Location: slider2.php');
-    }
-
-}
-
-
-if (isset($_POST["updatebtnslider2"])) {
-  $id=$_POST['edit_id_slider2'];
-  $status=$_POST['edit_status'];
-  $image=$_POST['edit_image'];
-  date_default_timezone_set("Asia/Dhaka");
-  $datetime = '';
-  $datetime=date('Y-m-d H:i:s');
-  if(!isset($_FILES['file_upload']) || $_FILES['file_upload']['error'] == UPLOAD_ERR_NO_FILE)
-  {
-    $target_dir2=$image;
-  }
-  else{
-
-    $name=$_FILES['file_upload']['name'];
-    $userFileName='slider_pic_'.$name;
-     $imageType=strtolower(pathinfo($_FILES['file_upload']['name'], PATHINFO_EXTENSION));
-     $target_dir="../images/slider2/".$userFileName;
-     $target_dir2="images/slider2/".$userFileName;
-     $target_file=$target_dir;
-     $temp_file=$_FILES['file_upload']['tmp_name'];
-     move_uploaded_file($temp_file, $target_file);
-  }
-  $query="update slider2 set image='$target_dir2',status='$status', updated_date='$datetime' where slider_id='$id'";
-  $query_run=mysqli_query($connection, $query);
-
-  if($query_run)
-  {
-    $_SESSION['success']="Slider data is updated";
-    header('Location: slider2.php');
-  }
-  else {
-    $_SESSION['success']="Slider data is not updated";
-    header('Location: slider2.php');
-  }
-
-
-}
 
 if(isset($_POST['sendmail']))
 {

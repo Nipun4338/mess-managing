@@ -3,6 +3,7 @@ RewriteEngine on
 RewriteRule ^home  home.php [NC,L]
 RewriteRule ^login  index.php [NC,L]
 RewriteRule ^logs  logs.php [NC,L]
+RewriteRule ^info  infos.php [NC,L]
 RewriteRule ^logout  logout.php [NC,L]
 RewriteRule ^todays_meal  todays_meal.php [NC,L]
 RewriteRule ^members_meal  members_meal.php [NC,L]

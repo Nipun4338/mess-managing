@@ -51,14 +51,14 @@
     <span>Cost Info</span></a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="contact.php">
+  <a class="nav-link" href="alert.php">
     <i class="fas fa-fw fa-chart-area"></i>
-    <span>Contact Us</span></a>
+    <span>Alert Set</span></a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="mail.php">
+  <a class="nav-link" href="logs.php">
     <i class="fas fa-fw fa-chart-area"></i>
-    <span>Send Mail</span></a>
+    <span>Logs</span></a>
 </li>
 <li class="nav-item">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">

@@ -25,7 +25,7 @@ if($noOfRows){
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="card.css">
   <link rel="stylesheet" href="sidebar.css">
-  <link rel="icon" href="Graphicloads-Colorful-Long-Shadow-Diary.ico">
+  <link rel="icon" href="./home.ico">
   </head>
   <body id="main">
     <?php
@@ -40,6 +40,23 @@ if($noOfRows){
      <div class="row" style="display: flex;
         align-items: stretch;
         justify-content: space-around;">
+        <?php 
+          $sql="SELECT * FROM alert where status=1";
+          $r=mysqli_query($connection,$sql);
+          $no=mysqli_num_rows($r);
+          if($no){
+            while($ro=mysqli_fetch_assoc($r)){
+        ?>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <?php echo $ro['name']; ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+            <?php } } ?>
+           <div>
+           <p id="runOut"></p>
+            </div>
        <?php
        if($noOfRows)
        {
@@ -99,7 +116,17 @@ if($noOfRows){
            <p style="font-weight: bold">Total Cost: <span style="color: green; font-weight: bolder;font-size: 30px"><?php echo number_format((float)$others+$meal, 2, '.', ''); ?></span> BDT</p>
            </div>
            <div class="story ellipsis">
-           <p style="font-weight: bold">Balance: <span style="color: green; font-weight: bolder;font-size: 30px"><?php echo number_format((float)$deposite-$others-$meal, 2, '.', ''); ?></span> BDT</p>
+           <p style="font-weight: bold">Balance: <span style="color: green; font-weight: bolder;font-size: 30px"><?php
+           $balance=number_format((float)$deposite-$others-$meal, 2, '.', '');
+           if($balance<=0)
+           { ?>
+            <script>
+            document.getElementById("runOut").innerHTML = '<p class="alert alert-danger" style="text-align: center; font-weight: bold">Your balance has run out! Please deposite money to the meal manager!</p>';            
+            </script>
+            <?php
+           } ?>
+           <?php
+           echo $balance; ?></span> BDT</p>
            </div>
            <?php }}}} ?>
            <div class="date">
@@ -109,7 +136,8 @@ if($noOfRows){
         </div>
 
          <?php } }
-}?>
+          }
+        ?>
      </div>
      </div>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>

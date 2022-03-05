@@ -18,6 +18,7 @@
 				<a class="nav-item nav-link" href = "todays_meal"> Todays Meal </a>
 				<a class="nav-item nav-link" href = "members_meal"> Members Meal Info </a>
 				<a class="nav-item nav-link" href = "logs"> Logs </a>
+				<a class="nav-item nav-link" href = "info"> Infos </a>
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           '.$_SESSION['user_name'].'
         </a>

@@ -29,7 +29,7 @@ if($noOfRows){
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="card.css">
   <link rel="stylesheet" href="sidebar.css">
-  <link rel="icon" href="Graphicloads-Colorful-Long-Shadow-Diary.ico">
+  <link rel="icon" href="./home.ico">
   </head>
   <body id="main">
     <?php
@@ -161,11 +161,11 @@ if($noOfRows){
               echo "No Record Found";
           }
           ?>
+          </tbody>
+        </table>
         </div>
      </div>
      </div>
-   <script>
-    <script  src="./lunchtime.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 

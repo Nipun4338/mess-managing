@@ -29,7 +29,7 @@ if($noOfRows){
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="card.css">
   <link rel="stylesheet" href="sidebar.css">
-  <link rel="icon" href="Graphicloads-Colorful-Long-Shadow-Diary.ico">
+  <link rel="icon" href="./home.ico">
   </head>
   <body id="main">
     <?php
@@ -52,19 +52,19 @@ if($noOfRows){
         <h3 style="font-weight: bold; text-align: center">Set Meal</h3><hr/>
         <form class="form-container" action="code.php" method="POST">
         <?php if(isset($_SESSION['success']) && $_SESSION['success']!='')
-    {
-        echo '<div class="alert alert-success">
-        '.$_SESSION['success'].'
-        </div>';
-        unset($_SESSION['success']);
-    }
-    if(isset($_SESSION['status']) && $_SESSION['status']!='')
-    {
-        echo '<div class="alert alert-danger">
-        '.$_SESSION['success'].'
-        </div>';
-        unset($_SESSION['success']);
-    }
+        {
+            echo '<div class="alert alert-success" style="text-align: center; font-weight: bold">
+            '.$_SESSION['success'].'
+            </div>';
+            unset($_SESSION['success']);
+        }
+        if(isset($_SESSION['status']) && $_SESSION['status']!='')
+        {
+            echo '<div class="alert alert-danger" style="text-align: center; font-weight: bold">
+            '.$_SESSION['success'].'
+            </div>';
+            unset($_SESSION['success']);
+        }
      ?>
         <input type="hidden" name="user_id" value="<?php echo $user_id?>">
         <p class="card-title" style="text-align: center; font-style: italic;">Last Updated: <?php 

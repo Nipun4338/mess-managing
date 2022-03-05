@@ -29,7 +29,7 @@ if($noOfRows){
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="card.css">
   <link rel="stylesheet" href="sidebar.css">
-  <link rel="icon" href="Graphicloads-Colorful-Long-Shadow-Diary.ico">
+  <link rel="icon" href="./home.ico">
   </head>
   <body id="main">
     <?php

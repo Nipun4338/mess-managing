@@ -4,6 +4,10 @@ $server_name = "us-cdbr-east-05.cleardb.net";
 $db_username = "b7cbde8b1e7c3f";
 $db_password = "1ed309c3";
 $db_name = "heroku_0ca92521c0128f1";
+$server_name = "localhost";
+$db_username = "root";
+$db_password = "";
+$db_name = "mess";
 
 $connection = mysqli_connect($server_name,$db_username,$db_password,$db_name);
 $link=mysqli_connect($server_name,$db_username,$db_password,$db_name);

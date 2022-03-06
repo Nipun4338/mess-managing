@@ -25,7 +25,7 @@ if($noOfRows){
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="card.css">
   <link rel="stylesheet" href="sidebar.css">
-  <link rel="icon" href="./home.ico">
+  <link rel="icon" type="image/x-icon" href="https://img.icons8.com/ios/50/000000/home--v3.png">
   </head>
   <body id="main">
     <?php

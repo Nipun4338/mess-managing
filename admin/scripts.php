@@ -266,6 +266,26 @@ if (isset($_POST["editAlert"])) {
 
 }
 
+if (isset($_POST["addAlert"])) {
+  $id=$_POST['edit_id_alert'];
+  $title=$_POST['alert_name'];
+  $status=$_POST['status'];
+  $query="Insert into alert (name, status) values ('$title', '$status')";
+  $query_run=mysqli_query($connection, $query);
+
+  if($query_run)
+  {
+    $_SESSION['success']="Alert is added";
+    header('Location: alert.php');
+  }
+  else {
+    $_SESSION['success']="Alert is not added";
+    header('Location: alert.php');
+  }
+
+
+}
+
 
 if (isset($_POST["addCost"])) {
   $others=$_POST['others'];

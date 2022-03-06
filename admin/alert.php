@@ -5,6 +5,39 @@ include('includes/navbar.php');
 include('database/dbconfig.php');
 ?>
 
+<div class="modal fade" id="addadminprofile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Alert</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="scripts.php" method="POST">
+        <div class="modal-body">
+              <div class="form-group">
+                  <label> Alert Title </label>
+                  <input type="text" name="alert_name"  value="" class="form-control">
+              </div>
+              <div class="form-group">
+                  <label>Status</label>
+                <select name="status" class="form-select" class="form-select" aria-label="Default select example">
+                <option value="0">0</option>
+                <option value="1">1</option>
+              </select>              
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" name="addAlert" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
 
 <div class="container-fluid">
 
@@ -12,6 +45,9 @@ include('database/dbconfig.php');
 <div class="card shadow mb-4">
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary">Alerts
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addadminprofile">
+              Add Alert
+            </button>
     </h6>
   </div>
 

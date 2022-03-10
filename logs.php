@@ -11,6 +11,7 @@ if($noOfRows){
     array_push($data,$row);
   }
 }
+$left=0;
 ?>
 
 <!DOCTYPE html>
@@ -119,10 +120,21 @@ if($noOfRows){
             <td><?php echo number_format((float)$others+$meal, 2, '.', ''); ?></td>
 
             <?php } } } }?>
-            <td><?php echo number_format((float)$deposite-$others-$meal, 2, '.', ''); ?></td>
+            <td><?php 
+            $left+=number_format((float)$deposite-$others-$meal, 2, '.', '');
+            echo number_format((float)$deposite-$others-$meal, 2, '.', ''); ?></td>
             <td><p class="card-title" style="font-style: italic;"><?php echo date('M j, Y g:i A', strtotime($row1["date"])) ?></p></td>
             </tr>
-            <?php } } } } } }?>
+            <?php } } } } }
+          
+          }?>
+          <tr>
+            <td style="font-weight: bold">Balance Left: </td>
+            <td></td>
+            <td></td>
+            <td style="color: green; font-weight: bolder;font-size: 22px"><?php echo $left; ?></td>
+            <td></td>
+        </tr>
         </tbody>
         </table>
         </div>

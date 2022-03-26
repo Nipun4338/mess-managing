@@ -49,7 +49,7 @@ if($noOfRows){
         <?php 
             date_default_timezone_set("Asia/Dhaka");
         ?>
-        <h3 style="font-weight: bold; text-align: center">Today's Member Meal Info</h3><hr/>
+        <h3 style="font-weight: bold; text-align: center">Today's Member Meal Info</h3><br>
         <div class="table-responsive table table-hover">
         <table class="table">
         <thead>
@@ -86,7 +86,7 @@ if($noOfRows){
 
 
 
-        <h3 style="font-weight: bold; text-align: center">Total Meal Info</h3><hr/>
+        <h3 style="font-weight: bold; text-align: center">Total Meal Info</h3><br>
         <?php
         $sqlm="select * from month";
         $resultm=mysqli_query($connection,$sqlm);

@@ -50,7 +50,7 @@ $left=0;
         <?php 
             date_default_timezone_set("Asia/Dhaka");
         ?>
-        <h3 style="font-weight: bold; text-align: center">All Logs</h3><hr/>
+        <h3 style="font-weight: bold; text-align: center">All Logs</h3><br>
         <?php
         $sqlm="select * from month";
         $resultm=mysqli_query($connection,$sqlm);

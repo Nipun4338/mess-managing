@@ -36,7 +36,7 @@ $user_id=$_SESSION['user_id'];
      <div class="row" style="display: flex;
         align-items: stretch;
         justify-content: space-around;">
-        <h3 style="font-weight: bold; text-align: center">All Infos</h3><hr/>
+        <h3 style="font-weight: bold; text-align: center">All Infos</h3><br>
         <div class="table-responsive table table-hover">
         <?php
             $query = "SELECT * FROM logs order by date desc";
@@ -95,24 +95,6 @@ $user_id=$_SESSION['user_id'];
                 echo "No Record Found";
             }
             ?>
-          <!--<tr>
-            <td> 1 </td>
-            <td> Funda of WEb IT</td>
-            <td> funda@example.com</td>
-            <td> *** </td>
-            <td>
-                <form action="" method="post">
-                    <input type="hidden" name="edit_id" value="">
-                    <button  type="submit" name="edit_btn" class="btn btn-success"> EDIT</button>
-                </form>
-            </td>
-            <td>
-                <form action="" method="post">
-                  <input type="hidden" name="delete_id" value="">
-                  <button type="submit" name="delete_btn" class="btn btn-danger"> DELETE</button>
-                </form>
-            </td>
-          </tr>-->
 
         </tbody>
       </table>

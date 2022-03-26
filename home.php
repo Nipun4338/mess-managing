@@ -62,7 +62,7 @@ if($noOfRows){
        {
          $deposite=$row["deposite"];
         ?>
-        <h3 style="text-align: center">Your Dashboard</h3><br />
+        <h3 style="text-align: center">Your Dashboard</h3><br>
        <div class="card">
          <div class="container-fluid">
            <div class="title">

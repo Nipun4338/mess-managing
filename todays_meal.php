@@ -49,7 +49,7 @@ if($noOfRows){
         <?php 
             date_default_timezone_set("Asia/Dhaka");
         ?>
-        <h3 style="font-weight: bold; text-align: center">Set Meal</h3><hr/>
+        <h3 style="font-weight: bold; text-align: center">Set Meal</h3><br>
         <form class="form-container" action="code.php" method="POST">
         <?php if(isset($_SESSION['success']) && $_SESSION['success']!='')
         {
@@ -129,7 +129,7 @@ if($noOfRows){
         </div>
     </form>
 
-    <h3 style="font-weight: bold; text-align: center; margin-top: 20px">Meal Logs</h3><hr/>
+    <h3 style="font-weight: bold; text-align: center; margin-top: 20px">Meal Logs</h3><br>
     <div class="table-responsive table table-hover">
         <table class="table">
         <thead>

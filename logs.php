@@ -143,7 +143,7 @@ $left=0;
         $sql="SELECT * FROM cost order by date desc";
         $query_run=mysqli_query($connection,$sql);
         ?>
-        <h3 style="font-weight: bold; text-align: center">Cost Logs</h3><hr/>
+        <h3 style="font-weight: bold; text-align: center">Cost Logs</h3><br>
         <div class="table-responsive table table-hover">
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>

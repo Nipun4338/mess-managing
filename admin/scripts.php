@@ -205,7 +205,7 @@ if (isset($_POST["editBalance"])) {
   $datetime = '';
   $datetime=date('Y-m-d H:i:s');
   $query="update balance b1 set b1.deposite='$deposite', b1.cost='$cost', b1.balance='$balance', date='$datetime' where user_id='$id'";
-  $query2="insert into logs(user_id, deposite, date) values ('$d', '$deposite', '$datetime')";
+  $query2="insert into logs(user_id, deposite, date) values ('$id', '$deposite', '$datetime')";
   $query_run=mysqli_query($connection, $query);
   $query_run2=mysqli_query($connection, $query2);
   if($query_run)

@@ -119,7 +119,7 @@ $meal=0;
                else
                {
                  $meal=$row["meal_cost"]/1;
-                 $meal=$meal*$amar
+                 $meal=$meal*$amar;
                }
                $query="select user_id from user order by user_id";
                 $query_run=mysqli_query($connection, $query);

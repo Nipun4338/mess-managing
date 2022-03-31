@@ -13,6 +13,9 @@ if($noOfRows){
 }
 $left=0;
 $meal=0;
+$deposite2=0;
+$meal2=0;
+$others2=0;
 ?>
 
 <!DOCTYPE html>
@@ -89,6 +92,7 @@ $meal=0;
             <td><?php echo $row2['user_name']; ?></td>
             <td><?php
             $deposite=$row1["deposite"];
+	    $deposite2=$row1["deposite"];
             echo $row1['deposite']; ?></td>
             <?php
            $sql="SELECT * FROM meal where user_id='".$row1['user_id']."'";
@@ -111,6 +115,7 @@ $meal=0;
            
            if($noOfRows){
              while($row=mysqli_fetch_assoc($result)){
+	       $meal2=$row["meal_cost"]
                if($row3["meal_sum"])
                {
                  $meal=$row["meal_cost"]/$row3["meal_sum"];
@@ -125,14 +130,13 @@ $meal=0;
                 $query_run=mysqli_query($connection, $query);
                 $rowx=mysqli_num_rows($query_run);
                 $others=$row["others_cost"]/$rowx;
-
+		$others2=$row["others_cost"]/$rowx;
            ?>
 
             <td><?php echo number_format((float)$others+$meal, 2, '.', ''); ?></td>
 
             <?php } } } }?>
             <td><?php
-            $left+=number_format((float)$deposite-$others-$meal, 2, '.', '');
             echo number_format((float)$deposite-$others-$meal, 2, '.', ''); ?></td>
             <td><p class="card-title" style="font-style: italic;"><?php echo date('M j, Y g:i A', strtotime($row1["date"])) ?></p></td>
             </tr>
@@ -143,7 +147,9 @@ $meal=0;
             <td style="font-weight: bold">Balance Left: </td>
             <td></td>
             <td></td>
-            <td style="color: green; font-weight: bolder;font-size: 22px"><?php echo $left; ?></td>
+            <td style="color: green; font-weight: bolder;font-size: 22px"><?php 
+	    $left+=number_format((float)$deposite2-$others2-$meal2, 2, '.', '');
+            echo $left; ?></td>
             <td></td>
         </tr>
         </tbody>

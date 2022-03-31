@@ -47,7 +47,7 @@ $left=0;
         align-items: stretch;
         justify-content: space-around;">
 
-        <?php 
+        <?php
             date_default_timezone_set("Asia/Dhaka");
         ?>
         <h3 style="font-weight: bold; text-align: center">All Logs</h3><br>
@@ -77,7 +77,7 @@ $left=0;
        {
        foreach ($data as $row1) {
       ?>
-      <?php 
+      <?php
         $sql1="SELECT * FROM user where user_id='".$row1['user_id']."'";
         $result1=mysqli_query($connection,$sql1);
         $noOfRows1=mysqli_num_rows($result1);
@@ -86,7 +86,7 @@ $left=0;
         ?>
             <tr>
             <td><?php echo $row2['user_name']; ?></td>
-            <td><?php 
+            <td><?php
             $deposite=$row1["deposite"];
             echo $row1['deposite']; ?></td>
             <?php
@@ -107,26 +107,31 @@ $left=0;
            $sql="SELECT * FROM cost";
            $result=mysqli_query($connection,$sql);
            $noOfRows=mysqli_num_rows($result);
+           $meal=0;
+           $others=0;
            if($noOfRows){
              while($row=mysqli_fetch_assoc($result)){
+               if($row3["meal_sum"])
+               {
                $meal=$row["meal_cost"]/$row3["meal_sum"];
                $meal=$meal*$amar;
                $query="select user_id from user order by user_id";
                 $query_run=mysqli_query($connection, $query);
                 $rowx=mysqli_num_rows($query_run);
                 $others=$row["others_cost"]/$rowx;
+              }
            ?>
-           
+
             <td><?php echo number_format((float)$others+$meal, 2, '.', ''); ?></td>
 
             <?php } } } }?>
-            <td><?php 
+            <td><?php
             $left+=number_format((float)$deposite-$others-$meal, 2, '.', '');
             echo number_format((float)$deposite-$others-$meal, 2, '.', ''); ?></td>
             <td><p class="card-title" style="font-style: italic;"><?php echo date('M j, Y g:i A', strtotime($row1["date"])) ?></p></td>
             </tr>
             <?php } } } } }
-          
+
           }?>
           <tr>
             <td style="font-weight: bold">Balance Left: </td>

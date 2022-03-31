@@ -40,7 +40,7 @@ if($noOfRows){
      <div class="row" style="display: flex;
         align-items: stretch;
         justify-content: space-around;">
-        <?php 
+        <?php
           $sql="SELECT * FROM alert where status=1";
           $r=mysqli_query($connection,$sql);
           $no=mysqli_num_rows($r);
@@ -77,7 +77,7 @@ if($noOfRows){
              while($row=mysqli_fetch_assoc($result)){
            ?>
            <div class="story ellipsis">
-           <p style="font-weight: bold">Total meal: <span style="color: green; font-weight: bolder;font-size: 30px"><?php 
+           <p style="font-weight: bold">Total meal: <span style="color: green; font-weight: bolder;font-size: 30px"><?php
              $amar=$row["meal_count"];
              echo $row["meal_count"]; ?></span></p>
            </div>
@@ -92,10 +92,15 @@ if($noOfRows){
            $sql="SELECT * FROM cost";
            $result=mysqli_query($connection,$sql);
            $noOfRows=mysqli_num_rows($result);
+           $per=0;
+           $meal=0;
            if($noOfRows){
              while($row=mysqli_fetch_assoc($result)){
-               $per=$row["meal_cost"]/$row3["meal_sum"];
-               $meal=$per*$amar;
+               if($row3["meal_sum"])
+               {
+                 $per=$row["meal_cost"]/$row3["meal_sum"];
+                 $meal=$per*$amar;
+               }
            ?>
            <div class="story ellipsis">
            <p style="font-weight: bold">Per Meal Rate: <span style="color: green; font-weight: bolder;font-size: 30px"><?php echo number_format((float)$per, 2, '.', ''); ?></span> BDT</p>
@@ -121,7 +126,7 @@ if($noOfRows){
            if($balance<=0)
            { ?>
             <script>
-            document.getElementById("runOut").innerHTML = '<p class="alert alert-danger" style="text-align: center; font-weight: bold">Your balance has run out! Please deposite money to the meal manager!</p>';            
+            document.getElementById("runOut").innerHTML = '<p class="alert alert-danger" style="text-align: center; font-weight: bold">Your balance has run out! Please deposite money to the meal manager!</p>';
             </script>
             <?php
            } ?>

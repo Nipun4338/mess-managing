@@ -115,7 +115,7 @@ $others2=0;
            
            if($noOfRows){
              while($row=mysqli_fetch_assoc($result)){
-	       $meal2=$row["meal_cost"]
+	       $meal2=$row["meal_cost"];
                if($row3["meal_sum"])
                {
                  $meal=$row["meal_cost"]/$row3["meal_sum"];
@@ -148,7 +148,7 @@ $others2=0;
             <td></td>
             <td></td>
             <td style="color: green; font-weight: bolder;font-size: 22px"><?php 
-	    $left+=number_format((float)$deposite2-$others2-$meal2, 2, '.', '');
+	    $left=number_format((float)$deposite2-$others2-$meal2, 2, '.', '');
             echo $left; ?></td>
             <td></td>
         </tr>

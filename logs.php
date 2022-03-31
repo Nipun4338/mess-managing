@@ -116,6 +116,11 @@ $meal=0;
                  $meal=$row["meal_cost"]/$row3["meal_sum"];
                  $meal=$meal*$amar;
                }
+               else
+               {
+                 $meal=$row["meal_cost"]/0.000001;
+                 $meal=$meal*$amar
+               }
                $query="select user_id from user order by user_id";
                 $query_run=mysqli_query($connection, $query);
                 $rowx=mysqli_num_rows($query_run);

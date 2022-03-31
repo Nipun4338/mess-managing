@@ -116,6 +116,7 @@ $others2=0;
            if($noOfRows){
              while($row=mysqli_fetch_assoc($result)){
 	       $meal2=$row["meal_cost"];
+	       $others2=$row["others_cost"];
                if($row3["meal_sum"])
                {
                  $meal=$row["meal_cost"]/$row3["meal_sum"];
@@ -130,7 +131,6 @@ $others2=0;
                 $query_run=mysqli_query($connection, $query);
                 $rowx=mysqli_num_rows($query_run);
                 $others=$row["others_cost"]/$rowx;
-		$others2=$row["others_cost"]/$rowx;
            ?>
 
             <td><?php echo number_format((float)$others+$meal, 2, '.', ''); ?></td>

@@ -92,7 +92,7 @@ $others2=0;
             <td><?php echo $row2['user_name']; ?></td>
             <td><?php
             $deposite=$row1["deposite"];
-	    $deposite2=$row1["deposite"];
+	    $deposite2+=$row1["deposite"];
             echo $row1['deposite']; ?></td>
             <?php
            $sql="SELECT * FROM meal where user_id='".$row1['user_id']."'";

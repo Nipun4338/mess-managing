@@ -12,6 +12,7 @@ if($noOfRows){
   }
 }
 $left=0;
+$meal=0;
 ?>
 
 <!DOCTYPE html>
@@ -107,7 +108,7 @@ $left=0;
            $sql="SELECT * FROM cost";
            $result=mysqli_query($connection,$sql);
            $noOfRows=mysqli_num_rows($result);
-           $meal=0;
+           
            if($noOfRows){
              while($row=mysqli_fetch_assoc($result)){
                if($row3["meal_sum"])

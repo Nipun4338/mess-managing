@@ -1,15 +1,9 @@
 <?php
 include('database/dbconfig.php');
-$query="Select * from user";
-$result=mysqli_query($connection,$query);
-$data=array();
-
-
-  while($row=mysqli_fetch_assoc($result)){
-      array_push($data,$row);
-  }
-
-  foreach ($data as $row1) {
-    echo $row1["user_id"];
+$sql="DELETE * from logs";
+$result=mysqli_query($link,$sql) or die(mysqli_error($link));
+if($result)
+  {
+    echo "Log is deleted!";
   }
 ?>

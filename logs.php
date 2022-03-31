@@ -108,18 +108,18 @@ $left=0;
            $result=mysqli_query($connection,$sql);
            $noOfRows=mysqli_num_rows($result);
            $meal=0;
-           $others=0;
            if($noOfRows){
              while($row=mysqli_fetch_assoc($result)){
                if($row3["meal_sum"])
                {
-               $meal=$row["meal_cost"]/$row3["meal_sum"];
-               $meal=$meal*$amar;
+                 $meal=$row["meal_cost"]/$row3["meal_sum"];
+                 $meal=$meal*$amar;
+               }
                $query="select user_id from user order by user_id";
                 $query_run=mysqli_query($connection, $query);
                 $rowx=mysqli_num_rows($query_run);
                 $others=$row["others_cost"]/$rowx;
-              }
+
            ?>
 
             <td><?php echo number_format((float)$others+$meal, 2, '.', ''); ?></td>

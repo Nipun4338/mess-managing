@@ -118,7 +118,7 @@ $meal=0;
                }
                else
                {
-                 $meal=$row["meal_cost"]/0.001;
+                 $meal=$row["meal_cost"]/1;
                  $meal=$meal*$amar
                }
                $query="select user_id from user order by user_id";

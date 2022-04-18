@@ -112,7 +112,7 @@ $others2=0;
            $sql="SELECT * FROM cost";
            $result=mysqli_query($connection,$sql);
            $noOfRows=mysqli_num_rows($result);
-           
+
            if($noOfRows){
              while($row=mysqli_fetch_assoc($result)){
 	       $meal2=$row["meal_cost"];
@@ -147,7 +147,7 @@ $others2=0;
             <td style="font-weight: bold">Balance Left: </td>
             <td></td>
             <td></td>
-            <td style="color: green; font-weight: bolder;font-size: 22px"><?php 
+            <td style="color: green; font-weight: bolder;font-size: 22px"><?php
 	    $left=number_format((float)$deposite2-$others2-$meal2, 2, '.', '');
             echo $left; ?></td>
             <td></td>

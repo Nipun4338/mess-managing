@@ -290,15 +290,17 @@ if (isset($_POST["addAlert"])) {
 if (isset($_POST["addCost"])) {
   $others=$_POST['others'];
   $meal=$_POST['meal'];
+  $note=$_POST['note'];
   date_default_timezone_set("Asia/Dhaka");
   $datetime = '';
   $datetime=date('Y-m-d H:i:s');
   $query="update cost c1 set c1.others_cost=c1.others_cost+'$others', c1.meal_cost=c1.meal_cost+'$meal', date='$datetime'";
   $query_run=mysqli_query($connection, $query);
-  $query2="insert into logs(others_cost, meal_cost, date) values ('$others', '$meal', '$datetime')";
-  $query_run2=mysqli_query($connection, $query2);
+  $query2=sprintf("insert into logs(note, others_cost, meal_cost, date) values ('$note', '$others', '$meal', '$datetime')", mysqli_real_escape_string($connection, $note));
+  $statement = $connection->prepare($query2);
+  $statement->execute();
 
-  if($query_run)
+  if($statement)
   {
     $_SESSION['success']="Cost Data is updated";
     header('Location: cost_info.php');
@@ -307,22 +309,22 @@ if (isset($_POST["addCost"])) {
     $_SESSION['success']="Cost Data is not updated";
     header('Location: cost_info.php');
   }
-
-
 }
 
 if (isset($_POST["editCost"])) {
   $others=$_POST['others'];
   $meal=$_POST['meal'];
+  $note=$_POST['note'];
   date_default_timezone_set("Asia/Dhaka");
   $datetime = '';
   $datetime=date('Y-m-d H:i:s');
   $query="update cost c1 set c1.others_cost='$others', c1.meal_cost='$meal', date='$datetime'";
   $query_run=mysqli_query($connection, $query);
-  $query2="insert into logs(others_cost, meal_cost, date) values ('$others', '$meal', '$datetime')";
-  $query_run2=mysqli_query($connection, $query2);
+  $query2=sprintf("insert into logs(note, others_cost, meal_cost, date) values ('$note', '$others', '$meal', '$datetime')", mysqli_real_escape_string($connection, $note));
+  $statement = $connection->prepare($query2);
+  $statement->execute();
 
-  if($query_run)
+  if($statement)
   {
     $_SESSION['success']="Cost Data is updated";
     header('Location: cost_info.php');

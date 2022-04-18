@@ -24,6 +24,10 @@ include('database/dbconfig.php');
                 <label> Meal Cost </label>
                 <input type="number" min="0" name="meal" value="0" class="form-control" placeholder="Enter Money">
             </div>
+            <div class="form-group">
+                <label> Details </label>
+                <input type="text"  name="note" class="form-control" placeholder="Enter Details" required>
+            </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

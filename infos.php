@@ -64,7 +64,7 @@ $user_id=$_SESSION['user_id'];
             ?>
                 <tr>
                 <td><?php  echo $row['log_id']; ?></td>
-                <?php 
+                <?php
                 if($row["user_id"]!=0)
                 {
                     $query2 = "SELECT * FROM user where user_id='".$row["user_id"]."'";
@@ -78,7 +78,7 @@ $user_id=$_SESSION['user_id'];
                     <?php }}}
                     else
                     { ?>
-                        <td>Not Found</td>
+                        <td><?php echo $row['note']; ?></td>
                         <?php
                     }
                     ?>

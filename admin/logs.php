@@ -68,7 +68,7 @@ if(isset($_REQUEST['delete']))
             ?>
                 <tr>
                 <td><?php  echo $row['log_id']; ?></td>
-                <?php 
+                <?php
                     $query2 = "SELECT * FROM user where user_id='".$row["user_id"]."'";
                     $query_run2 = mysqli_query($connection, $query2);
                     if($row["user_id"]!=0)
@@ -84,7 +84,7 @@ if(isset($_REQUEST['delete']))
                     <?php }}}
                     else
                     { ?>
-                        <td>Not Found</td>
+                        <td><?php echo $row['note']; ?></td>
                         <?php
                     }
                     ?>

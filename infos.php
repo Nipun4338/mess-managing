@@ -78,7 +78,7 @@ $user_id=$_SESSION['user_id'];
                     <?php }}}
                     else
                     { ?>
-                        <td><?php echo $row['note']; ?></td>
+                        <td style="color:blue"><?php echo $row['note']; ?></td>
                         <?php
                     }
                     ?>

@@ -64,9 +64,9 @@ $others2=0;
         ?>
         <h6 style="text-align: center;"><?php echo $rowm['month_name']; ?>, Day <?php echo $rowm['day']; ?></h6>
         <?php } } ?>
-        <form action="#">
-          <button class="btn btn-outline-warning float-right" onclick="javascript:window.print()" id="print_button"><i class="fa fa-print"></i></button>
-        </form>
+        <div>
+           <button class="btn btn-outline-warning float-right" onclick="javascript:window.print()" id="print_button"><i class="fa fa-print"></i></button>
+        </div>
         <div class="table-responsive table table-hover">
         <table class="table">
         <thead>

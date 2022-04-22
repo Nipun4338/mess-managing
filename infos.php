@@ -42,9 +42,9 @@ $user_id=$_SESSION['user_id'];
             $query = "SELECT * FROM logs order by date desc";
             $query_run = mysqli_query($connection, $query);
         ?>
-        <form action="#">
-          <button class="btn btn-outline-warning float-right" onclick="javascript:window.print()" id="print_button"><i class="fa fa-print"></i></button>
-        </form>
+        <div>
+           <button class="btn btn-outline-warning float-right" onclick="javascript:window.print()" id="print_button"><i class="fa fa-print"></i></button>
+        </div>
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
           <tr>

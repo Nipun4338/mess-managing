@@ -37,14 +37,14 @@ $user_id=$_SESSION['user_id'];
         align-items: stretch;
         justify-content: space-around;">
         <h3 style="font-weight: bold; text-align: center">All Infos</h3><br>
+        <div>
+           <button class="btn btn-outline-warning float-right" onclick="javascript:window.print()" id="print_button"><i class="fa fa-print"></i></button>
+        </div>
         <div class="table-responsive table table-hover">
         <?php
             $query = "SELECT * FROM logs order by date desc";
             $query_run = mysqli_query($connection, $query);
         ?>
-        <div>
-           <button class="btn btn-outline-warning float-right" onclick="javascript:window.print()" id="print_button"><i class="fa fa-print"></i></button>
-        </div>
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
           <tr>
